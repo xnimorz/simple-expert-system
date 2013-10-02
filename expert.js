@@ -190,13 +190,13 @@ function sortQuestion(a,b)
 		bPoints += b.items[i].questionPoints[b.index].min + b.items[i].questionPoints[b.index].max + b.items[i].points;
 	}
 
-	if (aPoints > bPoints) return 1;
+	if (aPoints > bPoints) return -1;
 	if (aPoints == bPoints)
 	{
-		if (a.items.length > b.items.length) return 1;
+		if (a.items.length > b.items.length) return -1;
 		if (a.items.length == b.items.length) return 0;
 	}
-	return -1;
+	return 1;
 }
 
 /**
