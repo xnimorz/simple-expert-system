@@ -282,7 +282,9 @@ Test.prototype.processAnswer = function(ans)
 		var point = this.items[i].questionPoints[this.questions[0].index];
 		if (point)
 		{
-			this.items[i].points += (point.max - point.min)*ans/100 + point.min;
+            var up = ((2*point.max - 1)*ans/100 + 1 - point.max) * this.items[i].points;
+            var down = ((2*point.max - 1)*ans/100 + 1 - point.max) * this.items[i].points + ((2*point.min - 1)*ans/100 + 1 - point.min)*(1 - this.items[i].points);
+			this.items[i].points = down != 0? up/down : this.items[i].points;
 		}
 	}
 	var template = '<div class="b-page-questions__answers-item">{0}</div>'
