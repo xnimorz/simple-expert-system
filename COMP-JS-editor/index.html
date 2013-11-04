@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Мини-экспертная система "ололо"</title>
+    <title>Редактор экспертной системы</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link type="text/css" rel=stylesheet href="expert.css"/>
-    <script type="text/javascript" src=expert.js></script>
+    <link type="text/css" rel=stylesheet href="expert-editor.css"/>
+    <script type="text/javascript" src=expert-editor.js></script>
     <script type="text/javascript" src="http://yandex.st/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body class="b-page">
     <div class="b-top-bar">
-        <div id=start-test  class="border-radius b-button b-page-shadows b-button-clickable b-page-transition">
-            Начать!
+        <div id=variables  class="border-radius b-button b-page-shadows b-button-clickable b-page-transition">
+            Переменные
         </div>
-        <div id=data-format  class="border-radius b-button b-page-shadows b-button-clickable b-page-transition">
-            Формат данных
+        <div id=rules  class="border-radius b-button b-page-shadows b-button-clickable b-page-transition">
+            Правила
         </div>
-        <span id="test-title" class="b-top-bar__title">Введите тест или выберите из списка существующих, нажмите начать</span>
+        <div id=save  class="border-radius b-button b-page-shadows b-button-clickable b-page-transition">
+            Сохранить тест
+        </div>
+        <span id="test-title" class="b-top-bar__title">Редактор для экспертной системы</span>
     </div>
-    <div class="b-page-main">
-        <textarea id="test" class=" b-input__area b-page-transition border-radius left-side" placeholder="Введите тест сюда. Затем нажмите Начать"></textarea>
-        <div class="b-page-test-switch left-side">
+    <div class="b-page-main left-side">
+        <div class="p-variables b-page-transition">
+            <div class="b-variable-form border-radius left-side">
+                <input type="text" id="variable-name" class="b-input border-radius" placeholder="Имя переменной">
+                <input type="checkbox" id="is-target" class="b-input b-checkbox">
+                <label for="is-target" class="b-input">Целевая переменная</label>
+                <input id="start-value" class="b-input border-radius" placeholder="Начальное значение">
+                <textarea id="variables-values" class="b-input border-radius b-textarea b-textarea-margin" placeholder="Возможные значения (через enter) Если таких нет - оставьте поле пустым"></textarea>
+                <div id="variable-add" class="border-radius b-button b-page-shadows b-button-clickable b-page-transition button-center">
+                    Добавить переменную
+                </div>
+            </div>
 
         </div>
+        <div class="p-rules left-side b-page-transition b-page-input-hide">
+            <div class="b-variable-form b-variable-form_long border-radius left-side">
+                <div class="b-variable-form__line-height">Имя правила: <input id="name-rule" class="b-input border-radius b-input_long right-side" placeholder="Имя переменной"></div>
+                <div class="b-variable-form__line-height">Если: <input id="if-rule" class="b-input border-radius b-input_long right-side" placeholder='Если: (операции сравнения: ==, !=, >, <, >=, <=)
+                Строковые константы задаются символом "'></div>
+                <div class="b-variable-form__line-height">To: <input id="then-rule" class="b-input border-radius b-input_long right-side" placeholder="После операции с каждой переменной указывать символ ;"></div>
+                <div class="b-variable-form__line-height">Иначе: <input id="else-rule" class="b-input border-radius b-input_long right-side" placeholder="После операции с каждой переменной указывать символ ;"></div>
+                <div id="rule-add" class="border-radius b-button b-page-shadows b-button-clickable b-page-transition button-center">
+                    Добавить правило
+                </div>
+            </div>
+        </div>
+        <div class="p-result left-side b-page-transition b-page-input-hide">
+            <div class="b-variable-form b-variable-form_long border-radius left-side">
+                Введите название системы, проверьте полученную систему и нажмите сохранить, для сохранения во внутреннюю память браузера, либо скопируйте данную систему в текстовый файл для последующей загрузки
+                <div class="b-variable-form__line-height"><input id="name-test" class="b-input border-radius b-input_long" placeholder="Название базы данных"></div>
+                <textarea id="exp-system-test" class="b-variable-form__line-height b-input border-radius b-textarea b-textarea-margin"></textarea>
+                <div id="test-add" class="border-radius b-button b-page-shadows b-button-clickable b-page-transition button-center">
+                    Сохранить систему
+                </div>
+            </div>
+        </div>
+
     </div>
-     <div class="b-page-test hide ">
-         <div class="b-page-test-items left-side">
-         </div>
-         <div class="b-page-questions left-side">
-             <div id="answers" class="b-page-questions__answers border-radius">
+    <div class="existing-variables b-variable-form b-page-input existing-variables-background-none">
+    </div>
+    <div class="existing-rules b-variable-form b-page-input existing-variables-background-none">
+    </div>
 
-
-             </div>
-             <div id=current-question class="b-page-questions__current border-radius">Текущий вопрос!</div>
-             <input type="text" id=current-answer class="b-page-questions__answer" value="50" placeholder="Вероятность" title="Введите значение от 0 (нет) до 100 (да). Если вы не знаете  - введите 50" />
-             <div id=complete-answer  class="b-button b-page-shadows border-radius b-page-transition b-button-clickable">
-                 Ответить!
-             </div>
-         </div>
-     </div>
 </body>
 </html>
