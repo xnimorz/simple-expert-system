@@ -25,9 +25,9 @@ function loadItemsFromLocalStorage()
 	var template = '<div class="b-page-test-switch__item b-page border-radius" index="{1}">{0}</div>';
 	var target = $(".b-page-test-switch");
 
-	for (var i = 0; localStorage["ExpertSys" + i]; i++)
+	for (var i = 0; localStorage[i]; i++)
 	{
-		target.html(target.html() + template.replace("{1}","ExpertSys" + i).replace("{0}",JSON.parse(localStorage["ExpertSys" + i]).title));
+		target.html(target.html() + template.replace("{1}",i).replace("{0}",JSON.parse(localStorage[i]).title));
 
 	}
 }
@@ -54,13 +54,13 @@ function saveToLocalStorage(test)
 	}
 	for (var i = 0; localStorage[i]; i++)
 	{
-		if (localStorage["ExpertSys"+i].match(test.title))
+		if (localStorage[i].match(test.title))
 		{
-			localStorage.setItem("ExpertSys" + i,test.stringify());
+			localStorage.setItem(i,test.stringify());
 			return;
 		}
 	}
-	localStorage.setItem("ExpertSys" + i,test.stringify());
+	localStorage.setItem(i,test.stringify());
 }
 
 /**
@@ -144,7 +144,7 @@ function init()
 				"После вопросов - следует список событий (вариантов) в формате:\n"+
 				"Событие<Перевод строки>Начальная_вероятность_события номер_вопроса) вероятность_max вероятность_min<перевод строки>\n" +
 				"Пример ввода:\n" +
-				"Определение пола\n" +
+				"Опредление пола\n" +
 				"\n" +
 				"Вы мальчик?\n"+
 				"Вы девочка?\n"+
