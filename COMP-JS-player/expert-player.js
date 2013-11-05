@@ -161,6 +161,7 @@ TestSystem.prototype.nextStep = function()
     }
     if (isOver)
     {
+        $("#test-descr").html("Тест закончен");
         alert("Тест закончен." +results);
         this.ask("Тест закончен." +results);
         return;
@@ -173,6 +174,7 @@ TestSystem.prototype.nextStep = function()
     if (isOver)
     {
         alert("Решение не найдено" + results);
+        $("#test-descr").html("Решение не найдено");
         this.ask("Решение не найдено" + results);
         return;
     }
