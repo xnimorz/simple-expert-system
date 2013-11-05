@@ -7,14 +7,14 @@ var currentPage = "variable";
 
 function generateIfFunction(rule,name)
 {
-    var Func = "function"+name + "(){";
+    var Func = "function "+name + "(){";
 
     for (var i in rule.allVariables)
     {
         Func += "var " + i + "=" + "this." + i + ";";
     }
 
-    Func += "if(" + rule.ifRule + ") then {" + (rule.thenRule?rule.thenRule : "") + "}";
+    Func += "if(" + rule.ifRule + ") {" + (rule.thenRule?rule.thenRule : "") + "}";
     if (rule.elseRule)
     {
         Func += "else{"+ rule.elseRule + "}"
@@ -22,17 +22,19 @@ function generateIfFunction(rule,name)
 
     for (var i in rule.determVariables)
     {
-        Func += "this." + i + "=" + i;
+        Func += "this." + i + "=" + i + ";";
     }
 
     Func += "}";
+    return Func;
 }
 
 function parseVariables(str)
 {
-    var variables = [];
-    for (var i = 0; i < ruleObj.ifRule.length;)
+    var variables = {};
+    for (var i = 0; i < str.length;)
     {
+        console.log(str[i]);
         if (/[a-z]/i.test(str[i]))
         {
             var variable = str[i++];
@@ -43,9 +45,10 @@ function parseVariables(str)
             variables[variable] = true;
         }
         else
-        if (str[i] == '"')
+        if (str[i] == "'")
         {
-            while (i < str.length && str[i] != '"')
+            i++;
+            while (i < str.length && str[i] != "'")
             {
                 i++;
             }
@@ -129,10 +132,12 @@ window.onload = function()
         }
 
         ruleObj.ifVariables     = parseVariables(ruleObj.ifRule);
-        ruleObj.thenVariables   = parseVariables(ruleObj.thenRule);//надо ли?
+        ruleObj.thenVariables   = parseVariables(ruleObj.thenRule);
         ruleObj.elseVariables   = parseVariables(ruleObj.elseRule);
-        ruleObj.determVariables = [];
-        ruleObj.allVariables = [];
+        ruleObj.determVariables = {};
+        ruleObj.allVariables = {};
+
+        console.log(ruleObj.ifVariables);
 
         for(var i in ruleObj.thenVariables)
         {
@@ -149,9 +154,9 @@ window.onload = function()
             ruleObj.allVariables[i] = true;
         }
 
-        rule[ruleObj.name] = (ruleObj);
+        rules[ruleObj.name] = (ruleObj);
         ruleObj.Func = generateIfFunction(ruleObj,ruleObj.name);
-
+        console.log(ruleObj.Func);
         $(".existing-rules").append(template.replace("{0}",ruleObj.name).replace("{1}",ruleObj.name));
 
     });
@@ -163,7 +168,8 @@ window.onload = function()
        if (currentPage == "variable")
        {
            $("#variable-name").attr("value", variableObj.name);
-           $("#is-target").attr("checked", variableObj.isTarget);
+           $("#is-target").attr("checked", variableObj.isTarget? "checked" : false);
+
            $("#start-value").attr("value", variableObj.value);
            $("#variables-values").val(variableObj.possibles? variableObj.possibles.join("\n"):"");
        }
@@ -208,12 +214,10 @@ window.onload = function()
         currentPage = "result";
         completeTest = generateTest();
         $("#exp-system-test").val(completeTest);
-
-        console.log('1');
     });
 
     $("#test-add").live("click keypress",function()
     {
-       localStorage.setItem($("#exp-system-test").attr("value"),completeTest);
+       localStorage.setItem("[ExpTestSystem:]" + $("#name-test").attr("value"),completeTest);
     });
 }

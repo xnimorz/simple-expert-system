@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Проигрыватель экспертной системы</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link type="text/css" rel=stylesheet href="../expert.css"/>
+    <script type="text/javascript" src=expert-player.js></script>
+    <script type="text/javascript" src="http://yandex.st/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body class="b-page">
+    <div class="b-top-bar">
+        <div id=start-test  class="border-radius b-button b-page-shadows b-button-clickable b-page-transition">
+            Начать
+        </div>
+        <span id="test-descr" class="b-top-bar__title">Выберите\введите тест и нажмите начать</span>
+    </div>
+    <div class="b-page-main">
+        <textarea id="test" class=" b-input__area b-page-transition border-radius left-side" placeholder="Введите тест сюда. Затем нажмите Начать"></textarea>
+        <div class="b-page-test-switch left-side">
+
+        </div>
+    </div>
+    <div class="b-page-test hide ">
+        <div class="b-page-test-items left-side">
+        </div>
+
+        <div class="b-page-questions  left-side">
+            <div id="answers" class="b-page-questions__answers border-radius">
+
+
+            </div>
+            <div id=current-question class="b-page-questions__current border-radius">Текущий вопрос!</div>
+            <input type="text" id=current-answer class="b-page-questions__answer b-page-questions__answer_long" value="" placeholder="Ответ:" />
+            <div id=complete-answer  class="b-button b-page-shadows border-radius b-page-transition b-button-clickable">
+                Ответить!
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

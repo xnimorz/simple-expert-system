@@ -2,13 +2,13 @@
 {
     background-color: #e0e6e7;
     margin: 0;
+    font-family: sans-serif, Arial;
 
 }
  .b-top-bar__title
  {
      color:#b7c0c6;
      font-size: 25px;
-     font-weight: bold;
      margin-left: 50px;
 
  }
@@ -54,8 +54,7 @@
     height: 32px;
     line-height: 32px;
 
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 16px;
      margin-left:20px;
     margin-top:5px;
 
@@ -123,7 +122,6 @@
     font:14px;
     background-color: #fff;
     color:#b7c0c6;
-    font-weight: bold;
     height: 30px;
     padding-left: 20px;
     line-height: 30px;
@@ -157,6 +155,7 @@
 
 .b-page-questions
 {
+    margin-left:15px;
     width: 500px;
     height: 100%;
 
@@ -197,7 +196,6 @@
     height: 20px;
     padding: 5px;
     font-size:15px;
-    font-weight: bold;
     color:#0271c7;
 }
 
@@ -209,4 +207,85 @@
 .b-page-test-items__item-title,.b-page-test-items__item
 {
     overflow: hidden;
+}
+
+.b-page-input
+{
+    background-color: #fff;
+    float: left;
+    padding: 10px;
+
+}
+
+.b-input
+{
+    height: 25px;
+    font-size: 15px;
+}
+
+.b-textarea
+{
+    height:200px;
+    width: 500px;
+    display: block;
+}
+
+
+.b-variable-form
+{
+    margin-left: 20px;
+    background-color: #fff;
+    padding: 15px;
+}
+
+.existing-variables-background-none
+{
+    background-color: transparent;
+}
+
+.b-textarea-margin
+{
+    margin-top:15px;
+
+}
+
+.b-page-input-hide
+{
+    display: none;
+}
+
+.b-checkbox
+{
+    vertical-align: bottom;
+}
+
+.b-page-test-switch__item_small
+{
+    height: 30px;
+}
+
+.b-input_long
+{
+    width: 440px;
+}
+
+.right-side
+{
+    float: right;
+}
+
+.b-variable-form__line-height
+{
+    line-height: 31px;
+    margin-top:10px;
+}
+
+.b-variable-form_long
+{
+    width: 580px;
+}
+
+.b-page-questions__answer_long
+{
+    width:300px;
 }
